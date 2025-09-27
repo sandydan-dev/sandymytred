@@ -3,12 +3,13 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                              http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.saidemy.demo</groupId>
   <artifactId>sandy-project</artifactId>
   <version>1.0</version>
-<packaging>war</packaging>
+  <packaging>war</packaging>
 
   <name>dummy-project</name>
   <url>http://www.example.com</url>
@@ -16,16 +17,12 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-    <!-- Use Java 17 or 21 (match the JDK on EC2/Jenkins) -->
+    <!-- match your JDK on EC2/Jenkins -->
     <maven.compiler.release>17</maven.compiler.release>
-    <!-- Alternative (explicit): 
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-    -->
   </properties>
 
   <dependencies>
-    <!-- JUnit 4 for quick dummy tests -->
+    <!-- JUnit for quick dummy tests -->
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -36,7 +33,7 @@
 
   <build>
     <plugins>
-      <!-- Latest compiler plugin to respect the release property -->
+      <!-- Compile with Java 17 -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -46,20 +43,33 @@
         </configuration>
       </plugin>
 
-      <!-- Surefire for running tests -->
+      <!-- Run tests -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
         <version>3.2.5</version>
       </plugin>
 
-      <!-- Optional: Sonar plugin -->
+      <!-- Optional: Sonar plugin for analysis -->
       <plugin>
         <groupId>org.sonarsource.scanner.maven</groupId>
         <artifactId>sonar-maven-plugin</artifactId>
         <version>5.2.0.4988</version>
       </plugin>
+
+      <!-- Build WAR instead of JAR -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-war-plugin</artifactId>
+        <version>3.4.0</version>
+        <configuration>
+          <!-- For Servlet 3+ apps, no web.xml needed -->
+          <failOnMissingWebXml>false</failOnMissingWebXml>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
+
 </project>
+
 
