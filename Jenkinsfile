@@ -18,7 +18,7 @@ pipeline {
       stage("SonarQube Analysis"){
           
          environment {
-            scammerHome = tool "sandy-sonar-scanner"
+            scannerHome = tool "sandy-sonar-scanner"
         }
 
          steps {
