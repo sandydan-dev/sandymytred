@@ -6,8 +6,9 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.saidemy.demo</groupId>
-  <artifactId>dummy-project</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <artifactId>sandy-project</artifactId>
+  <version>1.0</version>
+<packaging>war</packaging>
 
   <name>dummy-project</name>
   <url>http://www.example.com</url>
