@@ -50,11 +50,13 @@ pipeline {
              echo '<--------------- Jar Publish Started --------------->'
                     def server = Artifactory.newServer url: registry + "/artifactory", credentialsId: "artifact-cred"
                     def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}"
+                    def version = sh(script: "mvn help:evaluate -Dexpression=project.version -q -DforceStdout", returnStdout: true).trim()
+
                     def uploadSpec = """{
                           "files": [
                             {
                               "pattern": "target/*.war",
-                              "target": "sandyjfrog-libs-release-local",
+                              "target": "sandyjfrog-libs-release-local/sandy-project/${version}",
                               "flat": "false",
                               "props": "${properties}",
                               "exclusions": [ "*.sha1", "*.md5"]
