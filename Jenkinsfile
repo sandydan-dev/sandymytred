@@ -53,7 +53,7 @@ pipeline {
                     def uploadSpec = """{
                           "files": [
                             {
-                              "pattern": "jarstaging/(*)",
+                              "pattern": "target/*.war",
                               "target": "sandyjfrog-libs-release-local/{1}",
                               "flat": "false",
                               "props": "${properties}",
