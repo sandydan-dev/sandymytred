@@ -54,13 +54,16 @@ pipeline {
                     def server = Artifactory.newServer url: registry + "/artifactory", credentialsId: "artifact-cred"
                     def properties = "buildid=${env.BUILD_ID},commitid=${GIT_COMMIT}"
                     def version = sh(script: "mvn help:evaluate -Dexpression=project.version -q -DforceStdout", returnStdout: true).trim()
-                    // Rename the WAR file to include version
+                   // Rename the WAR dynamically based on version
+                    def warFile = "sandy-project-${version}.war"
+                    sh "cp target/sandy-project-*.war target/${warFile}"
 
-                    sh "cp target/sandy-project-1.0.1.war target/sandy-project-${version}.war"   
+
+                      
                     def uploadSpec = """{
                           "files": [
                             {
-                              "pattern": "target/*.war",
+                              "pattern": "target/${warFile}",
                               "target": "sandyjfrog-libs-release-local/sandy-project/${version}/",
                               "flat": "true",
                               "props": "${properties}",
