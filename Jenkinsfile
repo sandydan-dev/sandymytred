@@ -54,7 +54,7 @@ pipeline {
                           "files": [
                             {
                               "pattern": "target/*.war",
-                              "target": "sandyjfrog-libs-release-local/{1}",
+                              "target": "sandyjfrog-libs-release-local",
                               "flat": "false",
                               "props": "${properties}",
                               "exclusions": [ "*.sha1", "*.md5"]
