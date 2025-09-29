@@ -33,11 +33,11 @@ pipeline {
       stage("SonarQube Analysis"){
           
          environment {
-            scannerHome = tool "sandy-sonarqube-scanner"
+            scannerHome = tool "sandy-sonar-scanner"
         }
 
          steps {
-           withSonarQubeEnv("sandy-sonarqube-server"){
+           withSonarQubeEnv("sandy-sonar-server"){
               sh "${scannerHome}/bin/sonar-scanner"
             }
          }
